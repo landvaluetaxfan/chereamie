@@ -1,0 +1,9 @@
+title: Harper Nguyen
+description: Essays on technology, economics, and governance.
+author: Harper Nguyen
+permalink: /:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - README.md
