@@ -7,3 +7,10 @@ kramdown:
   input: GFM
 exclude:
   - README.md
+
+# Default opening initial for every post (see https://initialis.azlen.me).
+# To use another: choose one on the site, Download, and paste the "params"
+# from the .json here or into a post's front matter as `initial:`.
+# `initial: false` in a post turns it off; `initial_grow: true` makes it grow in.
+initial: {"font": "cinzel-700", "frame": "circle", "inkA": "#000000"}
+initial_grow: false

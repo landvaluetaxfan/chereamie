@@ -2,6 +2,9 @@
 layout: post
 title: Bleeding-Heart Incrementalists
 description: A meditation on liberal techno-futurism, leftist planning, and the policies both camps could share.
+# Opening initial: paste the "params" from a downloaded Initiālis .json here to change it.
+# The letter itself is taken from the first letter of the post.
+initial: {"font": "cinzel-700", "frame": "circle", "inkA": "#000000"}
 ---
 A short preface; I don’t hold any considerable amount of authority at all on the various topics that are discussed within my writeup; I have simply spent an amount of time in circles of discourse, and I have gotten to compare various different positions against my own point of view. There are many other way more qualified, smarter people than me, which my writeup draws from.
 

@@ -175,3 +175,20 @@ sup a.footnote {
   .wrap { padding-top: 1.75rem; }
   .site-header { margin-bottom: 3rem; }
 }
+
+/* Initiālis initial, drawn by the script in the post layout */
+.initial {
+  float: left;
+  margin: 0.2rem 0.9rem 0.2rem 0;
+}
+.dropcap.has-initial > p:first-of-type::first-letter {
+  float: none;
+  font-size: 0;
+  line-height: inherit;
+  padding: 0;
+}
+.colophon {
+  margin: 3rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
