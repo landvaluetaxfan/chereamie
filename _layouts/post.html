@@ -20,7 +20,7 @@ layout: default
   // (no WebGL2, offline, a bad setting), the CSS drop cap stays.
   const body = document.querySelector('.post-body');
   const first = body && body.querySelector('p');
-  const base = {{ cap | jsonify }};
+  const base = {{ cap | jsonify }} || { font: "cinzel-700", frame: "circle", inkA: "#000000" };
   if (first && base) {
     const given = {{ page.initial_letter | jsonify }};
     const letter = (given || first.textContent.trim().charAt(0)).toUpperCase();
@@ -41,6 +41,16 @@ layout: default
         canvas.setAttribute('aria-hidden', 'true');
         canvas.style.width = canvas.style.height = css + 'px';
         await lib.draw(canvas, P, { size: px });
+        // If nothing was inked, keep the CSS drop cap rather than hiding the letter.
+        try {
+          const d = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+          let inked = false;
+          for (let i = 3; i < d.length; i += 4) if (d[i] > 8) { inked = true; break; }
+          if (!inked) throw new Error('The initial came back blank.');
+        } catch (e) {
+          if (e.name !== 'SecurityError') throw e;
+        }
+        console.info('Initiālis: drew', letter, P);
         body.prepend(canvas);
         body.classList.add('has-initial');
         document.querySelector('.colophon').hidden = false;
