@@ -176,10 +176,15 @@ sup a.footnote {
   .site-header { margin-bottom: 3rem; }
 }
 
-/* Initiālis initial, drawn by the script in the post layout */
+/* Opening initial image (set initial_image in a post's front matter) */
 .initial {
   float: left;
-  margin: 0.2rem 0.9rem 0.2rem 0;
+  margin: 0.3rem 0.9rem 0.2rem 0;
+}
+.initial img {
+  display: block;
+  width: 128px;
+  height: 128px;
 }
 .dropcap.has-initial > p:first-of-type::first-letter {
   float: none;
@@ -187,8 +192,13 @@ sup a.footnote {
   line-height: inherit;
   padding: 0;
 }
+/* When the initial is a word on its own ("A short..."), pull back the space after it */
+.cap-is-word > p:first-of-type { text-indent: -0.27em; }
 .colophon {
   margin: 3rem 0 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+@media (max-width: 30rem) {
+  .initial img { width: 96px; height: 96px; }
 }
