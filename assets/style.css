@@ -4,15 +4,34 @@
   --muted: #595959;
   --display: 'Cormorant Garamond', 'Times New Roman', serif;
   --text: 'EB Garamond', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  color-scheme: light;
 }
 
+/* Dark follows the system unless the reader picked light with the toggle... */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #000000;
     --fg: #ffffff;
     --muted: #a6a6a6;
+    color-scheme: dark;
   }
 }
+/* ...and applies whenever the reader picked dark. */
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: #a6a6a6;
+  color-scheme: dark;
+}
+
+/* Images drawn in black ink for light mode and white ink for dark mode */
+.ink-dark { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ink-light { display: none !important; }
+  :root:not([data-theme="light"]) .ink-dark { display: block !important; }
+}
+:root[data-theme="dark"] .ink-light { display: none !important; }
+:root[data-theme="dark"] .ink-dark { display: block !important; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -36,15 +55,49 @@ body {
   padding: 2.5rem 1.5rem 6rem;
 }
 
-.site-header { margin-bottom: 4.5rem; }
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 4.5rem;
+}
+.site-header.on-home { justify-content: flex-end; margin-bottom: 2.5rem; }
 
 .site-title {
+  display: inline-flex;
+  align-items: flex-end;
   font-family: var(--display);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  line-height: 1;
   color: inherit;
   text-decoration: none;
 }
+
+.theme-toggle {
+  font: inherit;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--fg);
+  background: none;
+  border: 0;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.theme-toggle:hover { text-decoration-thickness: 2px; }
+.theme-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+/* The ornamental first letter of the site name */
+.name-initial { display: inline-block; flex: none; }
+.name-initial img { display: block; width: 100%; height: 100%; }
+.site-title .name-initial { width: 1.75em; height: 1.75em; margin-right: 0.12em; }
+.home-title { display: flex; align-items: flex-end; }
+.home-title .name-initial { width: 1.5em; height: 1.5em; margin-right: 0.08em; }
 
 a {
   color: inherit;
@@ -67,6 +120,9 @@ h1 {
   margin: 0 0 0.75rem;
   text-wrap: balance;
 }
+
+/* Titles over about 60 characters set smaller so they do not fill the screen */
+h1.long-title { font-size: clamp(2rem, 5.5vw, 2.7rem); line-height: 1.15; }
 
 .subtitle {
   font-family: var(--display);
@@ -186,6 +242,7 @@ sup a.footnote {
   width: 128px;
   height: 128px;
 }
+.initial { margin-top: 0.4rem; }
 .dropcap.has-initial > p:first-of-type::first-letter {
   float: none;
   font-size: 0;

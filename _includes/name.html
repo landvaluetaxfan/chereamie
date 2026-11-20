@@ -1,0 +1,5 @@
+{% comment %}
+  Prints the site title. If name_initial is set in _config.yml, its first
+  letter is drawn as the ornamental initial instead. The surrounding link or
+  heading carries aria-label with the full name so screen readers read it whole.
+{% endcomment %}{% if site.name_initial %}<span class="name-initial" aria-hidden="true">{% if site.name_initial_dark %}<img class="ink-light" src="{{ site.name_initial | relative_url }}" alt=""><img class="ink-dark" src="{{ site.name_initial_dark | relative_url }}" alt="">{% else %}<img src="{{ site.name_initial | relative_url }}" alt="">{% endif %}</span><span aria-hidden="true">{{ site.title | slice: 1, 200 }}</span>{% else %}{{ site.title }}{% endif %}

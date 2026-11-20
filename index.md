@@ -2,7 +2,7 @@
 layout: default
 title: Harper Nguyen
 ---
-<h1 class="home-title">Harper Nguyen</h1>
+<h1 class="home-title" aria-label="{{ site.title }}">{% include name.html %}</h1>
 
 <ul class="post-list">
 {% for post in site.posts %}

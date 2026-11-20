@@ -8,7 +8,12 @@ kramdown:
 exclude:
   - README.md
 
+# The ornamental H in the site name (home page title and the link at the top of posts).
+# Remove these two lines to show the name as plain text.
+name_initial: /assets/initials/h-square-light.png
+name_initial_dark: /assets/initials/h-square-dark.png
+
 # Opening initials are plain images in assets/initials/. To make a new one, pick an
-# initial at https://initialis.azlen.me, Download, and use the 600 px transparent PNG
+# initial at https://initialis.azlen.me, Download, and use the transparent PNG
 # (for dark mode, set its inks to white and download again). Then set
 # initial_image (and optionally initial_image_dark) in the post's front matter.

@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.url == "/" %}{{ site.title }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
+  <script>
+    // Apply a saved light/dark choice before the page paints.
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -12,14 +19,39 @@
 </head>
 <body>
   <div class="wrap">
-    {% unless page.url == "/" %}
-    <header class="site-header">
-      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <header class="site-header{% if page.url == '/' %} on-home{% endif %}">
+      {% unless page.url == "/" %}
+      <a class="site-title" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">{% include name.html %}</a>
+      {% endunless %}
+      <button type="button" class="theme-toggle" id="theme-toggle" hidden>Dark mode</button>
     </header>
-    {% endunless %}
     <main>
       {{ content }}
     </main>
   </div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('theme-toggle');
+      var system = window.matchMedia('(prefers-color-scheme: dark)');
+      function current() {
+        return root.getAttribute('data-theme') || (system.matches ? 'dark' : 'light');
+      }
+      function label() {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        btn.textContent = next === 'light' ? 'Light mode' : 'Dark mode';
+        btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+      }
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        label();
+      });
+      if (system.addEventListener) system.addEventListener('change', label);
+      label();
+      btn.hidden = false;
+    })();
+  </script>
 </body>
 </html>

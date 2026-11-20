@@ -3,20 +3,19 @@ layout: default
 ---
 <article>
   <header class="post-header">
-    <h1>{{ page.title }}</h1>
+    <h1{% if page.title.size > 60 %} class="long-title"{% endif %}>{{ page.title }}</h1>
     {% if page.subtitle %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
     <p class="byline">{{ page.author | default: site.author }}, <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
   </header>
   {% if page.initial_image and page.dropcap != false %}
   {% assign after_cap = page.content | strip_html | strip | slice: 1, 1 %}
   <div class="post-body dropcap has-initial{% if after_cap == ' ' %} cap-is-word{% endif %}">
-    <picture class="initial" aria-hidden="true">
-      {% if page.initial_image_dark %}<source srcset="{{ page.initial_image_dark | relative_url }}" media="(prefers-color-scheme: dark)">{% endif %}
-      <img src="{{ page.initial_image | relative_url }}" alt="" width="128" height="128">
-    </picture>
+    <span class="initial" aria-hidden="true">
+      {% if page.initial_image_dark %}<img class="ink-light" src="{{ page.initial_image | relative_url }}" alt="" width="128" height="128"><img class="ink-dark" src="{{ page.initial_image_dark | relative_url }}" alt="" width="128" height="128">{% else %}<img src="{{ page.initial_image | relative_url }}" alt="" width="128" height="128">{% endif %}
+    </span>
     {{ content }}
   </div>
-  <p class="colophon">The opening initial was made with <a href="https://initialis.azlen.me">Initiālis</a>, by Azlen.</p>
+  <p class="colophon">The ornamental initials were made with <a href="https://initialis.azlen.me">Initiālis</a>, by Azlen.</p>
   {% else %}
   <div class="post-body{% unless page.dropcap == false %} dropcap{% endunless %}">
     {{ content }}
