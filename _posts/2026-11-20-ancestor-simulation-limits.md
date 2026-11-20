@@ -4,6 +4,7 @@ title: Ethical and Moral Limits on High-Fidelity Ancestor Simulation Could Tight
 description: Why an ethically constrained descendant civilization might be more willing to simulate eras close to its own, and what that implies about whether we are simulated.
 initial_image: /assets/initials/a-square-2-light.png
 initial_image_dark: /assets/initials/a-square-2-dark.png
+card_image: /assets/cards/ancestor-simulation-limits.png
 ---
 A technologically advanced descendant civilization capable of simulating a world like ours in sufficient detail (i.e. subjective experience and capability to experience pain and suffering in a manner similar or functionally identical to us) would, more likely than not, place ethical and moral limits on doing so (whether institutional or otherwise), and those limits or possible objectionability could potentially increase the further the simulated era is from the simulators' own.
 

@@ -4,6 +4,7 @@ title: Bleeding-Heart Incrementalists
 description: A meditation on liberal techno-futurism, leftist planning, and the policies both camps could share.
 initial_image: /assets/initials/a-square-1-light.png
 initial_image_dark: /assets/initials/a-square-1-dark.png
+card_image: /assets/cards/bleeding-heart-incrementalists.png
 ---
 A short preface; I don’t hold any considerable amount of authority at all on the various topics that are discussed within my writeup; I have simply spent an amount of time in circles of discourse, and I have gotten to compare various different positions against my own point of view. There are many other way more qualified, smarter people than me, which my writeup draws from.
 

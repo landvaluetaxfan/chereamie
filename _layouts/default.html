@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.url == "/" %}{{ site.title }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
+  {% assign share_title = page.title | default: site.title %}{% if page.url == "/" %}{% assign share_title = site.title %}{% endif %}
+  {% assign card = page.card_image | default: site.card_image %}
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ share_title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  {% if card %}
+  <meta property="og:image" content="{{ card | absolute_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ share_title }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {% else %}
+  <meta name="twitter:card" content="summary">
+  {% endif %}
   <script>
     // Apply a saved light/dark choice before the page paints.
     try {

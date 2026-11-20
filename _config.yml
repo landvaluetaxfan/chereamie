@@ -1,6 +1,8 @@
 title: Harper Nguyen
 description: Essays on technology, economics, and governance.
 author: Harper Nguyen
+url: https://landvaluetaxfan.github.io
+baseurl: /chereamie
 permalink: /:title/
 markdown: kramdown
 kramdown:
@@ -17,3 +19,7 @@ name_initial_dark: /assets/initials/h-square-dark.png
 # initial at https://initialis.azlen.me, Download, and use the transparent PNG
 # (for dark mode, set its inks to white and download again). Then set
 # initial_image (and optionally initial_image_dark) in the post's front matter.
+
+# The preview image shown when the home page is shared (1200 x 630).
+# Each post sets its own with card_image in its front matter.
+card_image: /assets/cards/home.png
